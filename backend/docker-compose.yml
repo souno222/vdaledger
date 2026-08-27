@@ -1,0 +1,41 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: vda-postgres
+    environment:
+      POSTGRES_DB: vda_ledger
+      POSTGRES_USER: ${DB_USERNAME:-vda_admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-vda_password}
+    ports:
+      - "5433:5432"
+    volumes:
+      - vda_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - vda-network
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: vda-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - vda-network
+    restart: unless-stopped
+
+volumes:
+  vda_postgres_data:
+
+networks:
+  vda-network:
+    driver: bridge
