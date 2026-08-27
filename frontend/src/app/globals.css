@@ -1,0 +1,232 @@
+@import "tailwindcss";
+
+:root {
+  --background: #06130a;
+  --foreground: #ffffff;
+  --surface: rgba(255, 255, 255, 0.09);
+  --surface-muted: rgba(0, 0, 0, 0.12);
+  --border: rgba(255, 255, 255, 0.14);
+  --primary: #c8f542;
+  --primary-foreground: #0d3617;
+  --secondary: #12300f;
+  --tertiary: #0d3617;
+  --muted-foreground: #a8b9aa;
+  --success: #c8f542;
+  --warning: #f4b740;
+  --danger: #ff7b7b;
+  --info: #7cc4ff;
+  --glass-blur: 12px;
+  --glass-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.3);
+  --deep-shadow: 0 40px 80px -20px rgba(10, 42, 18, 0.45);
+  --lime-shadow: 0 8px 24px -6px rgba(200, 245, 66, 0.4);
+  --motion-duration: 150ms;
+  --motion-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Compatibility aliases retained while existing routes are remediated. */
+  --forest: var(--background);
+  --canopy: var(--secondary);
+  --deep: var(--tertiary);
+  --lime: var(--primary);
+  --paper: var(--foreground);
+  --muted: var(--muted-foreground);
+}
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-forest: var(--forest);
+  --color-canopy: var(--canopy);
+  --color-deep: var(--deep);
+  --color-lime: var(--lime);
+  --color-paper: var(--paper);
+  --color-muted: var(--muted);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 78% 0%, rgba(200, 245, 66, 0.075), transparent 28rem),
+    linear-gradient(160deg, #06130a 0%, #12300f 45%, #06130a 100%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+  font-size: 14px;
+  line-height: 22.75px;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+a,
+button,
+input,
+select,
+summary {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+.type-display {
+  font-size: clamp(2.5rem, 5vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.05em;
+}
+
+.type-body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22.75px;
+}
+
+.type-label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.app-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.app-atmosphere {
+  background:
+    radial-gradient(circle at 84% 8%, rgba(200, 245, 66, 0.07), transparent 25rem),
+    radial-gradient(circle at 20% 72%, rgba(13, 54, 23, 0.48), transparent 34rem),
+    linear-gradient(160deg, #06130a 0%, #12300f 45%, #06130a 100%);
+}
+
+.glass-panel {
+  border: 0.8px solid var(--border);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.gradient-shell {
+  border-radius: 28px;
+  background: linear-gradient(
+    160deg,
+    rgb(10, 42, 18) 0%,
+    rgb(13, 54, 23) 45%,
+    rgb(10, 42, 18) 100%
+  );
+  box-shadow: var(--deep-shadow);
+  padding: 1px;
+}
+
+.data-table {
+  font-variant-numeric: tabular-nums;
+}
+
+.data-table th {
+  border-bottom: 0.8px solid rgba(255, 255, 255, 0.12);
+  padding: 12px 14px;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.data-table td {
+  border-bottom: 0.8px solid rgba(255, 255, 255, 0.075);
+  padding: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  vertical-align: middle;
+}
+
+.data-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.data-table tbody tr {
+  transition: background-color var(--motion-duration) var(--motion-easing);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.cl-card,
+.cl-userProfile-root .cl-card {
+  border: 0.8px solid var(--border) !important;
+  background: var(--surface) !important;
+  box-shadow: var(--glass-shadow) !important;
+  backdrop-filter: blur(var(--glass-blur));
+}
+
+.cl-headerTitle,
+.cl-headerSubtitle,
+.cl-formFieldLabel,
+.cl-footerActionText,
+.cl-profileSectionTitle,
+.cl-navbarButton,
+.cl-userPreviewMainIdentifier {
+  color: var(--foreground) !important;
+}
+
+.cl-formFieldInput {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  background: rgba(0, 0, 0, 0.18) !important;
+  color: var(--foreground) !important;
+}
+
+.cl-formButtonPrimary {
+  background: var(--foreground) !important;
+  color: var(--primary-foreground) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
